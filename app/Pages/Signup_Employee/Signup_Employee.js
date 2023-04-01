@@ -3,12 +3,15 @@ import { StyleSheet,Text, View,Image,TextInput,TouchableOpacity,ScrollView} from
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import DropDown from './Components/dropdownemp';
 import {Dimensions} from 'react-native';
+import { useRouter } from "expo-router";
+import {Link} from 'expo-router';
 
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 export default function SignupEmployee(){
+const router = useRouter();
 	return(
 
 		<View style={styles.Container}>
@@ -16,10 +19,33 @@ export default function SignupEmployee(){
 
 		<View style={styles.upper}>
 		<TouchableOpacity>
-		<FontAwesome5 name={'chevron-left'} size={18} color={'darkblue'}/>
+		<FontAwesome5 name={'chevron-left'} size={18} color={'darkblue'}
+		onPress={() => {
+			router.back();
+		  }}
+		/>
 		</TouchableOpacity>
 		</View>
 		
+		<View style={styles.signupWithOthers}>
+		<TouchableOpacity style={styles.google}>
+		<View style={styles.whiteback}>
+		<FontAwesome5 style={styles.ggl} name={'google'} size={30}/>
+		</View>
+		<View style={styles.googletextcontainer}>
+		<Text style={styles.googlesign}>Signup with Google</Text>
+		</View>
+		</TouchableOpacity>
+
+		<TouchableOpacity style={styles.facebook}>
+		<View style={styles.blueback}>
+		<FontAwesome5 style={styles.fbk} name={'facebook-f'} size={35} color={'rgba(255,255,255,1)'} />
+		</View>
+		<View style={styles.facebooktextcontainer}>
+		<Text style={styles.facebooksign}>Signup with Facebook</Text>
+		</View>
+		</TouchableOpacity>
+		</View>
 
 		<View style={styles.content}>
 		<Text style={styles.signup}>Sign Up</Text>
@@ -48,7 +74,9 @@ export default function SignupEmployee(){
 
 			<Text style={styles.left}>Already have an account?</Text>
 			<TouchableOpacity>
+			<Link href="../Login/Login">
 			<Text style={styles.right}>Sign in</Text>
+			</Link>
 			</TouchableOpacity>
 
 			</View>
@@ -68,34 +96,102 @@ const styles=StyleSheet.create({
 		paddingLeft:30,
 		paddingRight:30,
 	},
+	signupWithOthers:{
+		width:'100%',
+		height:85,
+		display:'flex',
+		flexDirection:'column',
+		justifyContent:'space-between',
+		alignItems:'center',
+		marginTop:40,
+	},
+	google:{
+		display:'flex',
+		flexDirection:'row',
+		width:'70%',
+		height:40,
+		borderRadius:5,
+		backgroundColor:'rgba(56,156,249,1)',
+		alignItems:'center',
+		elevation:15,
+		shadowColor: 'rgba(0,0,0,0.8)',
+	},
+	whiteback:{
+		height:38,
+		width:36,
+		backgroundColor:'white',
+		margin:1,
+		borderRadius:5,
+		justifyContent:'center',
+		alignItems:'center',
+	},
+	googletextcontainer:{
+		width:'80%',
+		alignItems:'center',
+	},
+	googlesign:{
+		color:'rgba(255,255,255,1)',
+		fontWeight:400,
+		fontSize:17,
+	},
+	facebook:{
+		display:'flex',
+		flexDirection:'row',
+		width:'70%',
+		height:40,
+		borderRadius:5,
+		backgroundColor:'rgba(	71	,89	,147,0.9)',
+		alignItems:'center',
+		elevation:15,
+		shadowColor: 'rgba(0,0,0,0.8)',
+		
+	},
+	blueback:{
+		height:38,
+		width:36,
+		backgroundColor:'rgba(	71	,89	,147,0.9)',
+		margin:1,
+		borderRadius:5,
+		justifyContent:'center',
+		alignItems:'center',
+	},
+	facebooktextcontainer:{
+		width:'80%',
+		alignItems:'center',
+	},
+	facebooksign:{
+		color:'white',
+		fontWeight:400,
+		fontSize:17,
+	},
 	signup:{
 		fontSize:30,
 		fontWeight:'bold',
 	},
 	content:{
-		marginTop:windowHeight/12,
+		marginTop:windowHeight/16,
 	},
 	textinput:{
 		height:50,
-		width:'80%',
+		width:'90%',
 		borderRadius:7,
 		borderWidth:1,
 		padding:10,
 		borderColor:'rgba(0,0,0,0.2)',
-		marginTop:60,
+		marginTop:50,
 	},
 	numberinput:{
 		height:50,
-		width:'80%',
+		width:'90%',
 		borderRadius:7,
 		borderWidth:1,
 		padding:10,
 		borderColor:'rgba(0,0,0,0.2)',
-		marginTop:60,
+		marginTop:50,
 
 	},
 	drop:{
-		marginTop:60,
+		marginTop:50,
 	},
 	btnn:{
 		height:40,
@@ -109,6 +205,8 @@ const styles=StyleSheet.create({
 	next:{
 		color:'rgba(0,0,0,1)',
 		fontWeight:'bold',
+		fontSize:18,
+		letterSpacing:1.1,
 	},
 	bottom:{
 		display:'flex',

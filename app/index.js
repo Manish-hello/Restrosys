@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, Text, View,Image,ScrollView,TouchableOpacity} from 'react-native';
+import { StyleSheet, Text, View,Image,ScrollView,TouchableOpacity, Linking} from 'react-native';
+import {Link} from 'expo-router';
 
 
 export default function FirstPage(){
@@ -13,13 +14,20 @@ export default function FirstPage(){
        <Text style={styles.welcom}>Welcome to your</Text>
        <Text style={styles.restro}>RestroSys</Text>
        </View>
+
+
 		<View style={styles.Buttons}>
 		<TouchableOpacity style={styles.Register}>
+		<Link href="./Pages/Signup_First/Signup_First">
 		<Text style={styles.reg}>Register</Text>
+		</Link>
 		</TouchableOpacity>
+		
 
 		<TouchableOpacity style={styles.Signin}>
+		<Link href="./Pages/Login/Login">
 		<Text style={styles.sig}>Sign in</Text>
+		</Link>
 		</TouchableOpacity>
 
 		</View>
@@ -77,21 +85,23 @@ const styles=StyleSheet.create({
 		height:50,
 		width:'45%',
 		backgroundColor:'orange',
+		justifyContent:'center',
+		alignItems:'center',
 		borderRadius:8,
 		marginLeft:10,
-		alignItems:'center',
-		justifyContent:'center',
 		elevation:15,
 		shadowColor: 'rgba(0,0,0,0.4)',
 	},
 	reg:{
 		color:'white',
 		fontWeight:'bold',
-		letterSpacing:1.5,
+		fontSize:18,
+		letterSpacing:1.1,
 		},
 	sig:{
 		fontWeight:'bold',
 		letterSpacing:1.5,
+		fontSize:18,
 	},
 	Signin:{
 		height:50,

@@ -2,6 +2,9 @@ import React,{useState} from 'react';
 import { StyleSheet,Text, View,Image,TextInput,TouchableOpacity,ScrollView} from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {Dimensions} from 'react-native';
+import { useRouter } from "expo-router";
+import {Link} from 'expo-router';
+
 
 
 const windowWidth = Dimensions.get('window').width;
@@ -9,6 +12,7 @@ const windowHeight = Dimensions.get('window').height;
 
 export default function Login(){
 const [secureentry,issecureentry]=useState(true);
+const router = useRouter();
 	return(
 		<ScrollView>
 		<View style={styles.Container}>
@@ -16,7 +20,11 @@ const [secureentry,issecureentry]=useState(true);
 
 		<View style={styles.upper}>
 		<TouchableOpacity>
-		<FontAwesome5 name={'chevron-left'} size={18} color={'darkblue'}/>
+		<FontAwesome5 name={'chevron-left'} size={18} color={'darkblue'}
+		onPress={() => {
+			router.back();
+		  }}
+		  />
 		</TouchableOpacity>
 		</View>
 		
@@ -69,7 +77,9 @@ const [secureentry,issecureentry]=useState(true);
 			<View style={styles.bottom}>
 			<Text style={styles.left}>Don't have an account?</Text>
 			<TouchableOpacity>
+			<Link href="../Signup_First/Signup_First">
 			<Text style={styles.right}>Register</Text>
+			</Link>
 			</TouchableOpacity>
 
 			</View>

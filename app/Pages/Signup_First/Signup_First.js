@@ -1,21 +1,28 @@
 import React,{useState} from 'react';
-import { StyleSheet,Text, View,Image,TextInput,TouchableOpacity,ScrollView} from 'react-native';
+import { StyleSheet,Text, View,Image,TextInput,TouchableOpacity} from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import DropDown from './Components/dropdown';
 import {Dimensions} from 'react-native';
+import { useRouter,Link } from "expo-router";
+
 
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-export default function SignupAdmin(){
+export default function SignupFirst(){
+	const router = useRouter();
 	return(
-		<ScrollView>
 		<View style={styles.Container}>
 		
 
 		<View style={styles.upper}>
 		<TouchableOpacity>
-		<FontAwesome5 name={'chevron-left'} size={18} color={'darkblue'}/>
+		<FontAwesome5 name={'chevron-left'} size={18} color={'darkblue'} 
+		onPress={() => {
+			router.back();
+		  }}
+		/>
 		</TouchableOpacity>
 		</View>
 		
@@ -37,60 +44,45 @@ export default function SignupAdmin(){
 		<Text style={styles.facebooksign}>Signup with Facebook</Text>
 		</View>
 		</TouchableOpacity>
-
 		</View>
-
 
 		<View style={styles.content}>
 		<Text style={styles.signup}>Sign Up</Text>
 		</View>
 		
 
-		<TextInput placeholder='Your Full Name' style={styles.textinput} placeholderTextColor={'rgba(0,0,0,0.5)'} >
+		<View style={styles.drop}>
+		<DropDown style={styles.dropp}/>
+		</View>
 
-		</TextInput>
+		<View style={styles.btn}>
+		<TouchableOpacity style={styles.btnn}>
+		<Text style={styles.next}>Next</Text>
+		</TouchableOpacity>
+		</View>
 
-		<TextInput placeholder='Phone Number' style={styles.numberinput} placeholderTextColor={'rgba(0,0,0,0.5)'} keyboardType='numeric'>
+		<View style={styles.bottom}>
 
-		</TextInput>
-		
-		<TextInput placeholder='Name of Organization' style={styles.textinput} placeholderTextColor={'rgba(0,0,0,0.5)'} >
-
-		</TextInput>
-
-		<TextInput placeholder='Address' style={styles.textinput} placeholderTextColor={'rgba(0,0,0,0.5)'} >
-
-		</TextInput>
-
-		<TextInput placeholder='Phone Number' style={styles.numberinput} placeholderTextColor={'rgba(0,0,0,0.5)'} keyboardType='numeric'>
-
-		</TextInput>
-
-			<View style={styles.btn}>
-			<TouchableOpacity style={styles.btnn}>
-			<Text style={styles.next}>Next</Text>
-			</TouchableOpacity>
-			</View>
-
-			<View style={styles.bottom}>
-
-			<Text style={styles.left}>Already have an account?</Text>
-			<TouchableOpacity>
-			<Text style={styles.right}>Sign in</Text>
-			</TouchableOpacity>
-
-			</View>
+		<Text style={styles.left}>Already have an account?</Text>
+		<TouchableOpacity>
+		<Link href="../Login/Login">
+		<Text style={styles.right}>Sign in</Text>
+		</Link>
+		</TouchableOpacity>
 
 		</View>
-		</ScrollView>
+
+
+		</View>
 		);
 }
+
 
 const styles=StyleSheet.create({
 	Container:{
 		flex:1,
 		backgroundColor:'white',
-		height:'105%',
+		height:'100%',
 		width:'100%',
 		paddingTop:60,
 		paddingLeft:30,
@@ -167,33 +159,16 @@ const styles=StyleSheet.create({
 	signup:{
 		fontSize:30,
 		fontWeight:'bold',
-		margin:0,
-
 	},
 	content:{
-	     marginTop:windowHeight/12,
-	},
-	textinput:{
-		height:50,
-		width:'90%',
-		borderRadius:7,
-		borderWidth:1,
-		padding:10,
-		borderColor:'rgba(0,0,0,0.2)',
-		marginTop:30,
-	},
-	numberinput:{
-		height:50,
-		width:'90%',
-		borderRadius:7,
-		borderWidth:1,
-		padding:10,
-		borderColor:'rgba(0,0,0,0.2)',
-		marginTop:30,
-
+		marginTop:windowHeight/18,
 	},
 	drop:{
-		marginTop:60,
+		marginTop:windowHeight/6,
+		marginBottom:windowHeight/9,
+	},
+	btn:{
+		marginTop:windowHeight/18,
 	},
 	btnn:{
 		height:40,
@@ -202,29 +177,27 @@ const styles=StyleSheet.create({
 		justifyContent:'center',
 		alignItems:'center',
 		borderRadius:6,
-		marginTop:60,
+
 	},
 	next:{
 		color:'rgba(0,0,0,1)',
 		fontWeight:'bold',
+		fontSize:18,
+		letterSpacing:1.1,
 	},
 	bottom:{
 		display:'flex',
 		flexDirection:'row',
 		justifyContent:'space-between',
-		marginTop:windowHeight/8,
-		paddingLeft:10,
+		marginTop:windowHeight/10,
+		paddingLeft:20,
 		paddingRight:20,
-		marginTop:60,
-
 	},
 	right:{
 		color:'rgba(255, 165, 0,1)',
 		fontWeight:'bold',
-
 	},
 	left:{
-		fontSize:15,
+		fontWeight:'bold',
 	},
-	
 });

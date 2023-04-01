@@ -63,7 +63,7 @@ inside:{
 	fontSize:13,
 },
 contents:{
-	height:180,
+	height:120,
 	width:'80%',
 	borderColor:'(rgba(0,0,0,0.2)',
 	borderRadius:10,
