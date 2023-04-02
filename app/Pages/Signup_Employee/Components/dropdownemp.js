@@ -53,7 +53,7 @@ export default function DropDown(){
 const styles=StyleSheet.create({
 dropdown:{
 	width:'90%',
-	height:45,
+	height:50,
 	borderRadius:7,
 	borderColor:'rgba(0,0,0,0.2)',
 	borderWidth:1.2,
@@ -86,7 +86,7 @@ dropitems:{
 	width:'90%',
 	height:40,
 	borderBottomWidth:1.2,
-	borderColor:'rgba(0,0,0,0.3)',
+	borderColor:'rgba(0,0,0,0.2)',
 	justifyContent:'center',
 
 },

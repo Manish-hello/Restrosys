@@ -63,7 +63,7 @@ inside:{
 	fontSize:13,
 },
 contents:{
-	height:120,
+	height:80,
 	width:'80%',
 	borderColor:'(rgba(0,0,0,0.2)',
 	borderRadius:10,
@@ -76,7 +76,7 @@ dropitems:{
 	width:'90%',
 	height:40,
 	borderBottomWidth:1.2,
-	borderColor:'rgba(0,0,0,0.3)',
+	borderColor:'rgba(0,0,0,0.2)',
 	alignSelf:'center',
 	justifyContent:'center',
 },

@@ -35,10 +35,31 @@ const router = useRouter();
 		<Text style={styles.login}>Login</Text>
 		</View>
 	
-		<View style={styles.someText}>
-		<Text style={styles.texts}>Welcome back</Text>
-		<Text style={styles.texts}>to your workspace!</Text>
+		  
+		<View style={styles.signupWithOthers}>
+		<TouchableOpacity style={styles.google}>
+		<View style={styles.whiteback}>
+		<Image style={styles.Google} source={require('../../assets/google.png')} />
+		</View>
+		<View style={styles.googletextcontainer}>
+		<Text style={styles.googlesign}>Signup with Google</Text>
+		</View>
+		</TouchableOpacity>
 
+		<TouchableOpacity style={styles.facebook}>
+		<View style={styles.blueback}>
+		<FontAwesome5 style={styles.fbk} name={'facebook-f'} size={35} color={'rgba(255,255,255,1)'} />
+		</View>
+		<View style={styles.facebooktextcontainer}>
+		<Text style={styles.facebooksign}>Signup with Facebook</Text>
+		</View>
+		</TouchableOpacity>
+		</View>
+
+		<View style={styles.OR}>
+			<Text style={styles.leftline}></Text>
+			<Text style={styles.or}>or</Text>
+			<Text style={styles.rightline}></Text>
 		</View>
 
 		<View style={styles.inputs}>
@@ -107,14 +128,107 @@ const styles=StyleSheet.create({
 
 	},
 	content:{
-	     marginTop:windowHeight/12,
+	     marginTop:windowHeight/32,
 	},
-	someText:{
+	signupWithOthers:{
+		width:'100%',
+		height:85,
+		display:'flex',
+		flexDirection:'column',
+		justifyContent:'space-between',
+		alignItems:'center',
 		marginTop:20,
 	},
-	texts:{
-		fontSize:25,
-		color:'rgba(0,0,0,0.5)'
+	google:{
+		display:'flex',
+		flexDirection:'row',
+		width:'70%',
+		height:40,
+		borderRadius:5,
+		backgroundColor:'rgba(56,156,249,1)',
+		alignItems:'center',
+		elevation:15,
+		shadowColor: 'rgba(0,0,0,0.8)',
+	},
+	Google:{
+		height:36,
+		width:34,
+	},
+	whiteback:{
+		height:38,
+		width:36,
+		backgroundColor:'white',
+		margin:1,
+		borderRadius:5,
+		justifyContent:'center',
+		alignItems:'center',
+	},
+	googletextcontainer:{
+		width:'80%',
+		alignItems:'center',
+	},
+	googlesign:{
+		color:'rgba(255,255,255,1)',
+		fontWeight:400,
+		fontSize:17,
+	},
+	facebook:{
+		display:'flex',
+		flexDirection:'row',
+		width:'70%',
+		height:40,
+		borderRadius:5,
+		backgroundColor:'rgba(	71	,89	,147,0.9)',
+		alignItems:'center',
+		elevation:15,
+		shadowColor: 'rgba(0,0,0,0.8)',
+		
+	},
+	blueback:{
+		height:38,
+		width:36,
+		backgroundColor:'rgba(	71	,89	,147,0.9)',
+		margin:1,
+		borderRadius:5,
+		justifyContent:'center',
+		alignItems:'center',
+	},
+	facebooktextcontainer:{
+		width:'80%',
+		alignItems:'center',
+	},
+	facebooksign:{
+		color:'white',
+		fontWeight:400,
+		fontSize:17,
+	},
+	OR:{
+		marginTop:windowHeight/32,
+		alignItems:'center',
+		flexDirection:'row',
+		justifyContent:'space-between',
+	},
+	leftline:{
+		height:1,
+		width:'46%',
+		backgroundColor:'rgba(0,0,0,1)',
+		position:'relative',
+		top:2,
+		elevation:5,
+		shadowColor: 'rgba(0,0,0,0.8)',
+	},
+	or:{
+		fontWeight:'bold',
+		fontSize:16,
+	},
+	rightline:{
+		height:1,
+		width:'46%',
+		backgroundColor:'rgba(0,0,0,1)',
+		position:'relative',
+		top:2,
+		elevation:5,
+		shadowColor: 'rgba(0,0,0,0.8)',
 	},
 	inputs:{
 		marginTop:40,
@@ -152,18 +266,20 @@ const styles=StyleSheet.create({
 
 	},
 	fgt:{
-		color:'orange',
+		color:'rgba(255, 219, 30, 1)',
 		marginLeft:20,
 		fontWeight:'bold'
 	},
 	btnn:{
 		height:50,
 		width:'100%',
-		backgroundColor:'rgba(248,248,250,1)',
+		backgroundColor:'rgba(251, 138, 56, 1)',
 		justifyContent:'center',
 		alignItems:'center',
 		borderRadius:6,
 		marginTop:60,
+		elevation:15,
+		shadowColor:'rgba(0,0,0,0.5)',
 	},
 	Sign:{
 		color:'rgba(0,0,0,1)',
@@ -182,7 +298,7 @@ const styles=StyleSheet.create({
 
 	},
 	right:{
-		color:'rgba(255, 165, 0,1)',
+		color:'rgba(255, 219, 30, 1)',
 		fontWeight:'bold',
 
 	},

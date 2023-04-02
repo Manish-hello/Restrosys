@@ -4,6 +4,7 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import DropDown from './Components/dropdown';
 import {Dimensions} from 'react-native';
 import { useRouter,Link } from "expo-router";
+import SignupAdmin from '../Signup_Admin/Signup_Admin';
 
 
 
@@ -25,30 +26,13 @@ export default function SignupFirst(){
 		/>
 		</TouchableOpacity>
 		</View>
-		
-		<View style={styles.signupWithOthers}>
-		<TouchableOpacity style={styles.google}>
-		<View style={styles.whiteback}>
-		<FontAwesome5 style={styles.ggl} name={'google'} size={30}/>
-		</View>
-		<View style={styles.googletextcontainer}>
-		<Text style={styles.googlesign}>Signup with Google</Text>
-		</View>
-		</TouchableOpacity>
-
-		<TouchableOpacity style={styles.facebook}>
-		<View style={styles.blueback}>
-		<FontAwesome5 style={styles.fbk} name={'facebook-f'} size={35} color={'rgba(255,255,255,1)'} />
-		</View>
-		<View style={styles.facebooktextcontainer}>
-		<Text style={styles.facebooksign}>Signup with Facebook</Text>
-		</View>
-		</TouchableOpacity>
-		</View>
 
 		<View style={styles.content}>
 		<Text style={styles.signup}>Sign Up</Text>
 		</View>
+		
+
+		
 		
 
 		<View style={styles.drop}>
@@ -57,7 +41,10 @@ export default function SignupFirst(){
 
 		<View style={styles.btn}>
 		<TouchableOpacity style={styles.btnn}>
+		<Link href="../Signup_Admin/Signup_Admin">
+
 		<Text style={styles.next}>Next</Text>
+		</Link>
 		</TouchableOpacity>
 		</View>
 
@@ -88,95 +75,32 @@ const styles=StyleSheet.create({
 		paddingLeft:30,
 		paddingRight:30,
 	},
-	signupWithOthers:{
-		width:'100%',
-		height:85,
-		display:'flex',
-		flexDirection:'column',
-		justifyContent:'space-between',
-		alignItems:'center',
-		marginTop:40,
-	},
-	google:{
-		display:'flex',
-		flexDirection:'row',
-		width:'70%',
-		height:40,
-		borderRadius:5,
-		backgroundColor:'rgba(56,156,249,1)',
-		alignItems:'center',
-		elevation:15,
-		shadowColor: 'rgba(0,0,0,0.8)',
-	},
-	whiteback:{
-		height:38,
-		width:36,
-		backgroundColor:'white',
-		margin:1,
-		borderRadius:5,
-		justifyContent:'center',
-		alignItems:'center',
-	},
-	googletextcontainer:{
-		width:'80%',
-		alignItems:'center',
-	},
-	googlesign:{
-		color:'rgba(255,255,255,1)',
-		fontWeight:400,
-		fontSize:17,
-	},
-	facebook:{
-		display:'flex',
-		flexDirection:'row',
-		width:'70%',
-		height:40,
-		borderRadius:5,
-		backgroundColor:'rgba(	71	,89	,147,0.9)',
-		alignItems:'center',
-		elevation:15,
-		shadowColor: 'rgba(0,0,0,0.8)',
-		
-	},
-	blueback:{
-		height:38,
-		width:36,
-		backgroundColor:'rgba(	71	,89	,147,0.9)',
-		margin:1,
-		borderRadius:5,
-		justifyContent:'center',
-		alignItems:'center',
-	},
-	facebooktextcontainer:{
-		width:'80%',
-		alignItems:'center',
-	},
-	facebooksign:{
-		color:'white',
-		fontWeight:400,
-		fontSize:17,
-	},
+	
 	signup:{
 		fontSize:30,
 		fontWeight:'bold',
+		margin:0,
 	},
+	
 	content:{
-		marginTop:windowHeight/18,
+		marginTop:windowHeight/32,
 	},
 	drop:{
-		marginTop:windowHeight/6,
-		marginBottom:windowHeight/9,
+		marginTop:windowHeight/4,
+		marginBottom:windowHeight/7,
 	},
 	btn:{
 		marginTop:windowHeight/18,
 	},
 	btnn:{
-		height:40,
+		height:50,
 		width:'100%',
-		backgroundColor:'rgba(255, 165, 0,1)',
+		backgroundColor:'rgba(251, 138, 56, 1)',
 		justifyContent:'center',
 		alignItems:'center',
 		borderRadius:6,
+		elevation:15,
+		shadowColor:'rgba(0, 0, 0,0.5)',
 
 	},
 	next:{
@@ -194,7 +118,7 @@ const styles=StyleSheet.create({
 		paddingRight:20,
 	},
 	right:{
-		color:'rgba(255, 165, 0,1)',
+		color:'rgba(255, 219, 30, 1)',
 		fontWeight:'bold',
 	},
 	left:{

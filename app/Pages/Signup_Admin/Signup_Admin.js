@@ -4,12 +4,18 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {Dimensions} from 'react-native';
 import { useRouter } from "expo-router";
 import {Link} from 'expo-router';
+import SignupEmployee from '../Signup_Employee/Signup_Employee';
+
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 export default function SignupAdmin(){
 const router = useRouter();
+const [secureentry,issecureentry]=useState(true);
+const [confsecureentry,isconfsecureentry]=useState(true);
+
+
 
 	return(
 		<ScrollView>
@@ -25,11 +31,15 @@ const router = useRouter();
 		/>
 		</TouchableOpacity>
 		</View>
+
+		<View style={styles.content}>
+		<Text style={styles.signup}>Sign Up</Text>
+		</View>
 		
 		<View style={styles.signupWithOthers}>
 		<TouchableOpacity style={styles.google}>
 		<View style={styles.whiteback}>
-		<FontAwesome5 style={styles.ggl} name={'google'} size={30}/>
+		<Image style={styles.Google} source={require('../../assets/google.png')} />
 		</View>
 		<View style={styles.googletextcontainer}>
 		<Text style={styles.googlesign}>Signup with Google</Text>
@@ -47,9 +57,10 @@ const router = useRouter();
 
 		</View>
 
-
-		<View style={styles.content}>
-		<Text style={styles.signup}>Sign Up</Text>
+		<View style={styles.OR}>
+			<Text style={styles.leftline}></Text>
+			<Text style={styles.or}>or</Text>
+			<Text style={styles.rightline}></Text>
 		</View>
 		
 
@@ -57,7 +68,7 @@ const router = useRouter();
 
 		</TextInput>
 
-		<TextInput placeholder='Phone Number' style={styles.numberinput} placeholderTextColor={'rgba(0,0,0,0.5)'} keyboardType='numeric'>
+		<TextInput placeholder='Email' style={styles.numberinput} placeholderTextColor={'rgba(0,0,0,0.5)'} keyboardType='numeric'>
 
 		</TextInput>
 		
@@ -65,23 +76,51 @@ const router = useRouter();
 
 		</TextInput>
 
-		<TextInput placeholder='Address' style={styles.textinput} placeholderTextColor={'rgba(0,0,0,0.5)'} >
-
-		</TextInput>
 
 		<TextInput placeholder='Phone Number' style={styles.numberinput} placeholderTextColor={'rgba(0,0,0,0.5)'} keyboardType='numeric'>
 
 		</TextInput>
 
+		<View style={styles.password}>
+		<TextInput placeholder='Password'
+		 style={styles.passinput}
+		  secureTextEntry={secureentry}
+		   placeholderTextColor={'rgba(0,0,0,0.5)'}
+		   autoCorrect={false}>
+		</TextInput>
+		<TouchableOpacity style={styles.eye} onPress={()=>{
+			issecureentry(!secureentry);
+		}}>
+		<FontAwesome5 name={secureentry===false ? 'eye':'eye'} size={25} color={'rgba(0,0,0,0.4)'}/>
+		</TouchableOpacity>
+		</View>
+
+		<View style={styles.confpassword}>
+		<TextInput placeholder='Confirm Password'
+		 style={styles.passinput}
+		  secureTextEntry={confsecureentry}
+		   placeholderTextColor={'rgba(0,0,0,0.5)'}
+		   autoCorrect={false}>
+		</TextInput>
+		<TouchableOpacity style={styles.eye} onPress={()=>{
+			isconfsecureentry(!confsecureentry);
+		}}>
+		<FontAwesome5 name={confsecureentry===false ? 'eye':'eye'} size={25} color={'rgba(0,0,0,0.4)'}/>
+		</TouchableOpacity>
+		</View>
+
 			<View style={styles.btn}>
 			<TouchableOpacity style={styles.btnn}>
+		<Link href="../Signup_Employee/Signup_Employee">
 			<Text style={styles.next}>Next</Text>
+			</Link>
 			</TouchableOpacity>
 			</View>
 
 			<View style={styles.bottom}>
 
 			<Text style={styles.left}>Already have an account?</Text>
+			<Text style={styles.horzline}></Text>
 			<TouchableOpacity>
 			<Link href="../Login/Login">
 			<Text style={styles.right}>Sign in</Text>
@@ -112,7 +151,7 @@ const styles=StyleSheet.create({
 		flexDirection:'column',
 		justifyContent:'space-between',
 		alignItems:'center',
-		marginTop:40,
+		marginTop:20,
 	},
 	google:{
 		display:'flex',
@@ -125,6 +164,11 @@ const styles=StyleSheet.create({
 		elevation:15,
 		shadowColor: 'rgba(0,0,0,0.8)',
 	},
+	Google:{
+		height:36,
+		width:34,
+	},
+
 	whiteback:{
 		height:38,
 		width:36,
@@ -177,10 +221,37 @@ const styles=StyleSheet.create({
 		fontSize:30,
 		fontWeight:'bold',
 		margin:0,
-
+	},
+	OR:{
+		marginTop:windowHeight/32,
+		alignItems:'center',
+		flexDirection:'row',
+		justifyContent:'space-between',
+	},
+	leftline:{
+		height:1,
+		width:'46%',
+		backgroundColor:'rgba(0,0,0,1)',
+		position:'relative',
+		top:2,
+		elevation:5,
+		shadowColor: 'rgba(0,0,0,0.8)',
+	},
+	or:{
+		fontWeight:'bold',
+		fontSize:16,
+	},
+	rightline:{
+		height:1,
+		width:'46%',
+		backgroundColor:'rgba(0,0,0,1)',
+		position:'relative',
+		top:2,
+		elevation:5,
+		shadowColor: 'rgba(0,0,0,0.8)',
 	},
 	content:{
-	     marginTop:windowHeight/12,
+	     marginTop:windowHeight/32,
 	},
 	textinput:{
 		height:50,
@@ -189,7 +260,7 @@ const styles=StyleSheet.create({
 		borderWidth:1,
 		padding:10,
 		borderColor:'rgba(0,0,0,0.2)',
-		marginTop:30,
+		marginTop:20,
 	},
 	numberinput:{
 		height:50,
@@ -198,20 +269,48 @@ const styles=StyleSheet.create({
 		borderWidth:1,
 		padding:10,
 		borderColor:'rgba(0,0,0,0.2)',
-		marginTop:30,
+		marginTop:20,
 
+	},
+	password:{
+		display:'flex',
+		flexDirection:'row',
+		marginTop:20,
+		width:'90%',
+		alignItems:'center',
+	},
+	confpassword:{
+		display:'flex',
+		flexDirection:'row',
+		marginTop:20,
+		width:'90%',
+		alignItems:'center',
+	},
+	passinput:{
+		height:50,
+		width:'100%',
+		borderRadius:7,
+		borderWidth:1,
+		padding:10,
+		borderColor:'rgba(0,0,0,0.2)',
+	},
+	eye:{
+		position:'absolute',
+		right:18,
 	},
 	drop:{
 		marginTop:60,
 	},
 	btnn:{
-		height:40,
+		height:50,
 		width:'100%',
-		backgroundColor:'rgba(255, 165, 0,1)',
+		backgroundColor:'rgba(251, 138, 56, 1)',
 		justifyContent:'center',
 		alignItems:'center',
 		borderRadius:6,
 		marginTop:60,
+		elevation:15,
+		shadowColor:'rgba(0, 0, 0,0.5)',
 	},
 	next:{
 		color:'rgba(0,0,0,1)',
@@ -223,6 +322,7 @@ const styles=StyleSheet.create({
 		display:'flex',
 		flexDirection:'row',
 		justifyContent:'space-between',
+		alignItems:'center',
 		marginTop:windowHeight/8,
 		paddingLeft:10,
 		paddingRight:20,
@@ -233,6 +333,11 @@ const styles=StyleSheet.create({
 		color:'rgba(255, 165, 0,1)',
 		fontWeight:'bold',
 
+	},
+	horzline:{
+		height:13,
+		width:3,
+		backgroundColor:'rgba(226, 227, 228, 1)',
 	},
 	left:{
 		fontSize:15,
