@@ -10,10 +10,13 @@ import {Link} from 'expo-router';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
+
 export default function SignupEmployee(){
 const router = useRouter();
 const [secureentry,issecureentry]=useState(true);
 const [confsecureentry,isconfsecureentry]=useState(true);
+
+
 
 	return(
 		<View style={styles.Container}>
@@ -30,7 +33,7 @@ const [confsecureentry,isconfsecureentry]=useState(true);
 		<View style={styles.content}>
 		<Text style={styles.signup}>Sign Up</Text>
 		</View>
-		
+		 
 		<View style={styles.signupWithOthers}>
 		<TouchableOpacity style={styles.google}>
 		<View style={styles.whiteback}>
@@ -56,6 +59,8 @@ const [confsecureentry,isconfsecureentry]=useState(true);
 			<Text style={styles.or}>or</Text>
 			<Text style={styles.rightline}></Text>
 		</View>
+
+		
 		
 
 		<TextInput placeholder='Your Full Name' style={styles.textinput} placeholderTextColor={'rgba(0,0,0,0.5)'} >
@@ -98,6 +103,7 @@ const [confsecureentry,isconfsecureentry]=useState(true);
 		</TouchableOpacity>
 		</View>
 		
+		
 			
 
 			<View style={styles.btn}>
@@ -122,7 +128,6 @@ const [confsecureentry,isconfsecureentry]=useState(true);
 		</View>
 		);
 }
-
 
 const styles=StyleSheet.create({
 	Container:{
@@ -242,60 +247,63 @@ const styles=StyleSheet.create({
 		shadowColor: 'rgba(0,0,0,0.8)',
 	},
 	textinput:{
-		height:50,
+		height:56,
 		width:'90%',
 		borderRadius:7,
 		borderWidth:1,
 		padding:10,
 		borderColor:'rgba(0,0,0,0.2)',
-		marginTop:20,
+		marginTop:10,
+		fontSize:16,
 	},
 	numberinput:{
-		height:50,
+		height:56,
 		width:'90%',
 		borderRadius:7,
 		borderWidth:1,
 		padding:10,
 		borderColor:'rgba(0,0,0,0.2)',
-		marginTop:20,
+		marginTop:10,
+		fontSize:16,
 
 	},
 	drop:{
-		marginTop:20,
+		marginTop:10,
 	},
 	password:{
 		display:'flex',
 		flexDirection:'row',
-		marginTop:20,
+		marginTop:10,
 		width:'90%',
 		alignItems:'center',
 	},
 	confpassword:{
 		display:'flex',
 		flexDirection:'row',
-		marginTop:20,
+		marginTop:10,
 		width:'90%',
 		alignItems:'center',
 	},
 	passinput:{
-		height:50,
+		height:56,
 		width:'100%',
 		borderRadius:7,
 		borderWidth:1,
 		padding:10,
 		borderColor:'rgba(0,0,0,0.2)',
+		fontSize:16,
 	},
 	eye:{
 		position:'absolute',
 		right:18,
 	},
 	btnn:{
-		height:50,
+		height:56,
 		width:'100%',
 		backgroundColor:'rgba(251, 138, 56, 1)',
 		justifyContent:'center',
 		alignItems:'center',
-		borderRadius:6,
+		borderRadius:12,
 		marginTop:40,
 		elevation:15,
 		shadowColor:'rgba(0, 0, 0,0.5)',
@@ -318,7 +326,7 @@ const styles=StyleSheet.create({
 
 	},
 	right:{
-		color:'rgba(255, 165, 0,1)',
+		color:'rgba(251, 138, 56, 1)',
 		fontWeight:'bold',
 	},
 	horzline:{

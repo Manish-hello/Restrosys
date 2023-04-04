@@ -18,7 +18,7 @@ export default function FirstPage(){
 
 		<View style={styles.Buttons}>
 		<TouchableOpacity style={styles.Register}>
-		<Link href="./Pages/Signup_First/Signup_First">
+		<Link href="./Pages/Signup_Admin/Signup_Admin">
 		<Text style={styles.reg}>Register</Text>
 		</Link>
 		</TouchableOpacity>

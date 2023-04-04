@@ -72,14 +72,6 @@ const [confsecureentry,isconfsecureentry]=useState(true);
 
 		</TextInput>
 		
-		<TextInput placeholder='Name of Organization' style={styles.textinput} placeholderTextColor={'rgba(0,0,0,0.5)'} >
-
-		</TextInput>
-
-
-		<TextInput placeholder='Phone Number' style={styles.numberinput} placeholderTextColor={'rgba(0,0,0,0.5)'} keyboardType='numeric'>
-
-		</TextInput>
 
 		<View style={styles.password}>
 		<TextInput placeholder='Password'
@@ -254,22 +246,25 @@ const styles=StyleSheet.create({
 	     marginTop:windowHeight/32,
 	},
 	textinput:{
-		height:50,
+		height:56,
 		width:'90%',
 		borderRadius:7,
 		borderWidth:1,
 		padding:10,
 		borderColor:'rgba(0,0,0,0.2)',
 		marginTop:20,
+		fontSize:16,
+
 	},
 	numberinput:{
-		height:50,
+		height:56,
 		width:'90%',
 		borderRadius:7,
 		borderWidth:1,
 		padding:10,
 		borderColor:'rgba(0,0,0,0.2)',
 		marginTop:20,
+		fontSize:16,
 
 	},
 	password:{
@@ -287,12 +282,13 @@ const styles=StyleSheet.create({
 		alignItems:'center',
 	},
 	passinput:{
-		height:50,
+		height:56,
 		width:'100%',
 		borderRadius:7,
 		borderWidth:1,
 		padding:10,
 		borderColor:'rgba(0,0,0,0.2)',
+		fontSize:16,
 	},
 	eye:{
 		position:'absolute',
@@ -302,12 +298,12 @@ const styles=StyleSheet.create({
 		marginTop:60,
 	},
 	btnn:{
-		height:50,
+		height:56,
 		width:'100%',
 		backgroundColor:'rgba(251, 138, 56, 1)',
 		justifyContent:'center',
 		alignItems:'center',
-		borderRadius:6,
+		borderRadius:12,
 		marginTop:60,
 		elevation:15,
 		shadowColor:'rgba(0, 0, 0,0.5)',
@@ -330,7 +326,7 @@ const styles=StyleSheet.create({
 
 	},
 	right:{
-		color:'rgba(255, 165, 0,1)',
+		color:'rgba(251, 138, 56, 1)',
 		fontWeight:'bold',
 
 	},

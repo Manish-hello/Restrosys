@@ -266,17 +266,17 @@ const styles=StyleSheet.create({
 
 	},
 	fgt:{
-		color:'rgba(255, 219, 30, 1)',
+		color:'rgba(251, 138, 56, 1)',
 		marginLeft:20,
 		fontWeight:'bold'
 	},
 	btnn:{
-		height:50,
+		height:56,
 		width:'100%',
 		backgroundColor:'rgba(251, 138, 56, 1)',
 		justifyContent:'center',
 		alignItems:'center',
-		borderRadius:6,
+		borderRadius:12,
 		marginTop:60,
 		elevation:15,
 		shadowColor:'rgba(0,0,0,0.5)',
@@ -298,7 +298,7 @@ const styles=StyleSheet.create({
 
 	},
 	right:{
-		color:'rgba(255, 219, 30, 1)',
+		color:'rgba(251, 138, 56, 1)',
 		fontWeight:'bold',
 
 	},

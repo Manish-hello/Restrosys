@@ -42,7 +42,6 @@ export default function SignupFirst(){
 		<View style={styles.btn}>
 		<TouchableOpacity style={styles.btnn}>
 		<Link href="../Signup_Admin/Signup_Admin">
-
 		<Text style={styles.next}>Next</Text>
 		</Link>
 		</TouchableOpacity>
@@ -93,12 +92,12 @@ const styles=StyleSheet.create({
 		marginTop:windowHeight/18,
 	},
 	btnn:{
-		height:50,
+		height:56,
 		width:'100%',
 		backgroundColor:'rgba(251, 138, 56, 1)',
 		justifyContent:'center',
 		alignItems:'center',
-		borderRadius:6,
+		borderRadius:12,
 		elevation:15,
 		shadowColor:'rgba(0, 0, 0,0.5)',
 
@@ -118,7 +117,7 @@ const styles=StyleSheet.create({
 		paddingRight:20,
 	},
 	right:{
-		color:'rgba(255, 219, 30, 1)',
+		color:'rgba(251, 138, 56, 1)',
 		fontWeight:'bold',
 	},
 	left:{
