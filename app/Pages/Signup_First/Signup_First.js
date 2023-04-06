@@ -11,8 +11,11 @@ import SignupAdmin from '../Signup_Admin/Signup_Admin';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
+
 export default function SignupFirst(){
 	const router = useRouter();
+	const [select,setSelect]=useState('../Signup_Admin/Signup_Admin');
+
 	return(
 		<View style={styles.Container}>
 		
@@ -36,12 +39,13 @@ export default function SignupFirst(){
 		
 
 		<View style={styles.drop}>
-		<DropDown style={styles.dropp}/>
+		<DropDown style={styles.dropp} setUser={setSelect}/>
 		</View>
 
+		{/*Fixed dynamic routing to admin and employee page*/}
 		<View style={styles.btn}>
 		<TouchableOpacity style={styles.btnn}>
-		<Link href="../Signup_Admin/Signup_Admin">
+		<Link href={select}>
 		<Text style={styles.next}>Next</Text>
 		</Link>
 		</TouchableOpacity>

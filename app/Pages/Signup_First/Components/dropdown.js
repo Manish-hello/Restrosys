@@ -3,13 +3,14 @@ import { StyleSheet,Text, View,Image,TextInput,TouchableOpacity,FlatList} from '
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 const values=[
-{name:'Owner',key:'1'},
-{name:'Employee',key:'2'},
+{name:'Owner',key:'1',url:"../Signup_Admin/Signup_Admin"},
+{name:'Employee',key:'2',url:"../Signup_Employee/Signup_Employee"},
 	];
-export default function DropDown(){
-	const [select,setSelect]=useState('Sign Up as');
+export default function DropDown({setUser}){
+	const [select,setSelect]=useState('Owener');
 	const[isClicked,setisClicked]=useState(false);
 	const[data,setdata]=useState(values);
+
 	return(
 		<View style={styles.Container}>
 
@@ -34,6 +35,7 @@ export default function DropDown(){
 					onPress={()=>{
 						setSelect(item.name);
 						setisClicked(false);
+						setUser(item.url)
 					}}>
 					<Text style={styles.itemname}>{item.name}</Text>
 					</TouchableOpacity>
