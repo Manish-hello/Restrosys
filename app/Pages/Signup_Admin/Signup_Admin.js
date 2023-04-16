@@ -6,15 +6,71 @@ import { useRouter } from "expo-router";
 import {Link} from 'expo-router';
 import SignupEmployee from '../Signup_Employee/Signup_Employee';
 
+import {createUserWithEmailAndPassword} from "firebase/auth";
+
+
+import {FIREBASE_AUTH} from "../../../firebaseConfig";
+
+
+import { AUTH_HANDELLER_FOR_NON_LOGEDIN_USER } from '../../../prototype/AuthStateChange';
+import { registerAdmin } from '../../../prototype/FireBaseFunctions';
+
+
+
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 export default function SignupAdmin(){
+AUTH_HANDELLER_FOR_NON_LOGEDIN_USER(async (user)=>{
+	console.log("user!")
+	if(user){
+		try{
+			let res=await registerAdmin();
+			return false;
+		}catch(error){
+			const code = error.code;
+			const message = error.message;
+			const details = error.details;
+			console.log(error);
+			/*Handle error here chikne muji*/
+			return true;
+		
+		}
+	}
+});
+
 const router = useRouter();
 const [secureentry,issecureentry]=useState(true);
 const [confsecureentry,isconfsecureentry]=useState(true);
+const [signupData,setSignupData]=useState({name:"",email:"",pword:"",repword:""});
+function updateSingupData(name,value){
+	setSignupData(prevState => ({
+		...prevState,
+		[name]: value
+	}));
 
+}
+
+
+function createUser(){
+
+	console.log(signupData);
+	/* please write data validiation code here gandu muji*/
+	createUserWithEmailAndPassword(FIREBASE_AUTH, signupData.email,signupData.pword).then((userCredential) => {
+		// Signed in 
+		const user = userCredential.user;
+		console.log(user);
+		// ...
+	  })
+	  .catch((error) => {
+		/* plz handel error code here bsdk i.e erroe while creating a user with */
+		const errorCode = error.code;
+		const errorMessage = error.message;
+		// ..
+	  });;
+
+}
 
 
 	return(
@@ -64,21 +120,23 @@ const [confsecureentry,isconfsecureentry]=useState(true);
 		</View>
 		
 
-		<TextInput placeholder='Your Full Name' style={styles.textinput} placeholderTextColor={'rgba(0,0,0,0.5)'} >
+		<TextInput  placeholder='Your Full Name' value={signupData.name} onChange={(e)=>{updateSingupData("name",e.target.value)}} style={styles.textinput} placeholderTextColor={'rgba(0,0,0,0.5)'} >
 
 		</TextInput>
 
-		<TextInput placeholder='Email' style={styles.numberinput} placeholderTextColor={'rgba(0,0,0,0.5)'} keyboardType='numeric'>
+		<TextInput  placeholder='Email' value={signupData.email} onChange={(e)=>{updateSingupData("email",e.target.value)}} style={styles.numberinput} placeholderTextColor={'rgba(0,0,0,0.5)'} keyboardType='numeric'>
 
 		</TextInput>
 		
 
 		<View style={styles.password}>
 		<TextInput placeholder='Password'
-		 style={styles.passinput}
-		  secureTextEntry={secureentry}
-		   placeholderTextColor={'rgba(0,0,0,0.5)'}
-		   autoCorrect={false}>
+			value={signupData.pword}
+			onChange={(e)=>{updateSingupData("pword",e.target.value)}}
+			style={styles.passinput}
+			secureTextEntry={secureentry}
+			placeholderTextColor={'rgba(0,0,0,0.5)'}
+			autoCorrect={false}>
 		</TextInput>
 		<TouchableOpacity style={styles.eye} onPress={()=>{
 			issecureentry(!secureentry);
@@ -89,10 +147,12 @@ const [confsecureentry,isconfsecureentry]=useState(true);
 
 		<View style={styles.confpassword}>
 		<TextInput placeholder='Confirm Password'
-		 style={styles.passinput}
-		  secureTextEntry={confsecureentry}
-		   placeholderTextColor={'rgba(0,0,0,0.5)'}
-		   autoCorrect={false}>
+			value={signupData.repword}
+			onChange={(e)=>{updateSingupData("repword",e.target.value)}}
+			style={styles.passinput}
+			secureTextEntry={confsecureentry}
+			placeholderTextColor={'rgba(0,0,0,0.5)'}
+			autoCorrect={false}>
 		</TextInput>
 		<TouchableOpacity style={styles.eye} onPress={()=>{
 			isconfsecureentry(!confsecureentry);
@@ -102,10 +162,8 @@ const [confsecureentry,isconfsecureentry]=useState(true);
 		</View>
 
 			<View style={styles.btn}>
-			<TouchableOpacity style={styles.btnn}>
-		<Link href="../Signup_Employee/Signup_Employee">
+			<TouchableOpacity style={styles.btnn} onPress={createUser}>
 			<Text style={styles.next}>Next</Text>
-			</Link>
 			</TouchableOpacity>
 			</View>
 

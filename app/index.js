@@ -2,8 +2,10 @@ import React from 'react';
 import { StyleSheet, Text, View,Image,ScrollView,TouchableOpacity, Linking} from 'react-native';
 import {Link} from 'expo-router';
 
+import { AUTH_HANDELLER_FOR_NON_LOGEDIN_USER } from '../prototype/AuthStateChange';
 
 export default function FirstPage(){
+	AUTH_HANDELLER_FOR_NON_LOGEDIN_USER();
 	return(
 		<View style={styles.Container}>
 		<View style={styles.logos}>

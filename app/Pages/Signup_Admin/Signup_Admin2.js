@@ -1,18 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet,Text, View,TextInput,TouchableOpacity,ScrollView} from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {Dimensions} from 'react-native';
 import { useRouter } from "expo-router";
 import {Link} from 'expo-router';
 
+import { AUTH_HANDELLER_FOR_LOGEDIN_USER } from '../../../prototype/AuthStateChange';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 export default function SignupAdmin2(){
+AUTH_HANDELLER_FOR_LOGEDIN_USER();
 const router = useRouter();
+const [inputData,setInputData]= useState({name:"",adress:""});
 
-
+function updateInputData(name,value){
+	setInputData(prevState => ({
+		...prevState,
+		[name]: value
+	}));
+}
+function gotoNextPage(){
+	router.push({pathname:"./Signup_Admin3",params:inputData});
+}
 
 
 	return(
@@ -36,12 +47,12 @@ const router = useRouter();
 		
 		
         <View>
-		<TextInput placeholder='Name of Organization' style={styles.textinput} placeholderTextColor={'rgba(0,0,0,0.5)'} > 
+		<TextInput placeholder='Name of Organization' value={inputData.name} onChange={(e)=>updateInputData("name",e.target.value)} style={styles.textinput} placeholderTextColor={'rgba(0,0,0,0.5)'} > 
 		</TextInput>
         <Text style={styles.warning}>Warning</Text>
         </View>
 
-        <TextInput placeholder='Address' style={styles.textinput} placeholderTextColor={'rgba(0,0,0,0.5)'} >
+        <TextInput placeholder='Address' value={inputData.adress} onChange={(e)=>updateInputData("adress",e.target.value)} style={styles.textinput} placeholderTextColor={'rgba(0,0,0,0.5)'} >
 
 		</TextInput>
 
@@ -54,7 +65,7 @@ const router = useRouter();
 
 			<View style={styles.btn}>
 			<TouchableOpacity style={styles.btnn}>
-			<Text style={styles.next}>Next</Text>
+			<Text style={styles.next} onPress={gotoNextPage}>Next</Text>
 			</TouchableOpacity>
 			</View>
 

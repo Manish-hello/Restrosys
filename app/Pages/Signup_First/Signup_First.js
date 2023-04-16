@@ -6,6 +6,7 @@ import {Dimensions} from 'react-native';
 import { useRouter,Link } from "expo-router";
 import SignupAdmin from '../Signup_Admin/Signup_Admin';
 
+import { AUTH_HANDELLER_FOR_NON_LOGEDIN_USER } from '../../../prototype/AuthStateChange';
 
 
 const windowWidth = Dimensions.get('window').width;
@@ -13,6 +14,7 @@ const windowHeight = Dimensions.get('window').height;
 
 
 export default function SignupFirst(){
+AUTH_HANDELLER_FOR_NON_LOGEDIN_USER();
 	const router = useRouter();
 	const [select,setSelect]=useState('../Signup_Admin/Signup_Admin');
 

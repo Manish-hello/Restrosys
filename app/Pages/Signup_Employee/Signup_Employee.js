@@ -6,12 +6,15 @@ import {Dimensions} from 'react-native';
 import { useRouter } from "expo-router";
 import {Link} from 'expo-router';
 
+import { AUTH_HANDELLER_FOR_NON_LOGEDIN_USER } from '../../../prototype/AuthStateChange';
+
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 
 export default function SignupEmployee(){
+AUTH_HANDELLER_FOR_NON_LOGEDIN_USER();
 const router = useRouter();
 const [secureentry,issecureentry]=useState(true);
 const [confsecureentry,isconfsecureentry]=useState(true);

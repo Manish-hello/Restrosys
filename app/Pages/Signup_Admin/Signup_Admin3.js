@@ -3,15 +3,35 @@ import { StyleSheet,Text, View,Image,TouchableOpacity,ScrollView} from 'react-na
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {Dimensions} from 'react-native';
 import { useRouter } from "expo-router";
-import {Link} from 'expo-router';
+import {Link, useSearchParams} from 'expo-router';
 
+import {FIREBASE_AUTH} from "../../../firebaseConfig";
+
+import { AUTH_HANDELLER_FOR_LOGEDIN_USER } from '../../../prototype/AuthStateChange';
+
+import { verifyKhaltiPayemnt, setRestroInfo } from '../../../prototype/FireBaseFunctions';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 export default function SignupAdmin2(){
+AUTH_HANDELLER_FOR_LOGEDIN_USER();
+const {name,adress}=useSearchParams();
 const router = useRouter();
 
+async function khaltiPayment(){
+	const token="paisa_he_paisa_hoga";
+	console.log(name,adress);
+	try{
+		let res= await verifyKhaltiPayemnt({token:token});
+		let mchikne=await FIREBASE_AUTH.currentUser.getIdTokenResult(true); /*FOR REFRESHING TOKEN*/
+		res= await setRestroInfo({name:name,adress:adress});
+		router.replace("/Pages/Admin/Admin");
+	}catch(error){
+		console.log(error);
+		/*chikne error handeling yeta garne*/
+	}
+}
 
 
 
@@ -42,7 +62,7 @@ const router = useRouter();
 
 
 			<View style={styles.btn}>
-			<TouchableOpacity style={styles.btnn}>
+			<TouchableOpacity style={styles.btnn} onPress={khaltiPayment}>
 			<Text style={styles.pay}>Pay via Khalti</Text>
 			</TouchableOpacity>
 			</View>

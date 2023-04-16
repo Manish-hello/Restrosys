@@ -5,14 +5,40 @@ import {Dimensions} from 'react-native';
 import { useRouter } from "expo-router";
 import {Link} from 'expo-router';
 
+import {signInWithEmailAndPassword} from "firebase/auth";
+import {FIREBASE_AUTH} from "../../../firebaseConfig";
+
+import { AUTH_HANDELLER_FOR_NON_LOGEDIN_USER } from '../../../prototype/AuthStateChange';
 
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 export default function Login(){
+AUTH_HANDELLER_FOR_NON_LOGEDIN_USER();
 const [secureentry,issecureentry]=useState(true);
 const router = useRouter();
+const [signupData,setSignupData]=useState({email:"",pword:""});
+
+function updateSingupData(name,value){
+	setSignupData(prevState => ({
+		...prevState,
+		[name]: value
+	}));
+
+}
+function login(){
+	/* please calidate unser input bsdk*/
+	signInWithEmailAndPassword(FIREBASE_AUTH,signupData.email,signupData.pword,(userCredential)=>{
+		const user = userCredential.user;
+		console.log(user);
+	}).catch((error)=>{
+		/* plesase handle error bsdk */
+		const errorCode = error.code;
+		const errorMessage = error.message;
+		console.log(error.message)
+	});
+}
 	return(
 		<ScrollView>
 		<View style={styles.Container}>
@@ -63,16 +89,18 @@ const router = useRouter();
 		</View>
 
 		<View style={styles.inputs}>
-		<TextInput placeholder='Phone, email of username' style={styles.textinput} placeholderTextColor={'rgba(0,0,0,0.5)'}>
+		<TextInput value={signupData.email} onChange={(e)=>{updateSingupData("email",e.target.value)}} placeholder='Phone, email of username' style={styles.textinput} placeholderTextColor={'rgba(0,0,0,0.5)'}>
 
 		</TextInput>
 
 		<View style={styles.password}>
 		<TextInput placeholder='Password'
-		 style={styles.passinput}
-		  secureTextEntry={secureentry}
-		   placeholderTextColor={'rgba(0,0,0,0.5)'}
-		   autoCorrect={false}>
+			value={signupData.pword}
+			onChange={(e)=>{updateSingupData("pword",e.target.value)}}
+			style={styles.passinput}
+			secureTextEntry={secureentry}
+			placeholderTextColor={'rgba(0,0,0,0.5)'}
+			autoCorrect={false}>
 		</TextInput>
 		<TouchableOpacity style={styles.eye} onPress={()=>{
 			issecureentry(!secureentry);
@@ -90,7 +118,7 @@ const router = useRouter();
 
 
 			<View style={styles.btn}>
-			<TouchableOpacity style={styles.btnn}>
+			<TouchableOpacity onPress={login} style={styles.btnn}>
 			<Text style={styles.Sign}>Sign In</Text>
 			</TouchableOpacity>
 			</View>
