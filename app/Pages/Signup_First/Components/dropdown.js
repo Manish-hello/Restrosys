@@ -4,10 +4,10 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 const values=[
 {name:'Owner',key:'1',url:"../Signup_Admin/Signup_Admin"},
-{name:'Employee',key:'2',url:"../Signup_Employee/Signup_Employee"},
+{name:'Employee',key:'2',url:"../Signup_Employee/Signup_Employee_Qr"},
 	];
 export default function DropDown({setUser}){
-	const [select,setSelect]=useState('Owener');
+	const [select,setSelect]=useState('Owner');
 	const[isClicked,setisClicked]=useState(false);
 	const[data,setdata]=useState(values);
 

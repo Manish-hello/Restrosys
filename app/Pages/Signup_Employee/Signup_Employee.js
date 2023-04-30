@@ -1,7 +1,6 @@
 import React,{useState} from 'react';
 import { StyleSheet,Text, View,Image,TextInput,TouchableOpacity,ScrollView} from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import DropDown from './Components/dropdownemp';
 import {Dimensions} from 'react-native';
 import { useRouter } from "expo-router";
 import {Link} from 'expo-router';
@@ -22,96 +21,96 @@ const [confsecureentry,isconfsecureentry]=useState(true);
 
 
 	return(
-		<View style={styles.Container}>
-		<View style={styles.upper}>
-		<TouchableOpacity>
-		<FontAwesome5 name={'chevron-left'} size={18} color={'darkblue'}
-		onPress={() => {
-			router.back();
-		  }}
-		/>
-		</TouchableOpacity>
-		</View>
-
-		<View style={styles.content}>
-		<Text style={styles.signup}>Sign Up</Text>
-		</View>
-		 
-		<View style={styles.signupWithOthers}>
-		<TouchableOpacity style={styles.google}>
-		<View style={styles.whiteback}>
-		<Image style={styles.Google} source={require('../../assets/google.png')} />
-		</View>
-		<View style={styles.googletextcontainer}>
-		<Text style={styles.googlesign}>Signup with Google</Text>
-		</View>
-		</TouchableOpacity>
-
-		<TouchableOpacity style={styles.facebook}>
-		<View style={styles.blueback}>
-		<FontAwesome5 style={styles.fbk} name={'facebook-f'} size={35} color={'rgba(255,255,255,1)'} />
-		</View>
-		<View style={styles.facebooktextcontainer}>
-		<Text style={styles.facebooksign}>Signup with Facebook</Text>
-		</View>
-		</TouchableOpacity>
-		</View>
-
-		<View style={styles.OR}>
-			<Text style={styles.leftline}></Text>
-			<Text style={styles.or}>or</Text>
-			<Text style={styles.rightline}></Text>
-		</View>
-
-		
-		
-
-		<TextInput placeholder='Your Full Name' style={styles.textinput} placeholderTextColor={'rgba(0,0,0,0.5)'} >
-
-		</TextInput>
-
-		<TextInput placeholder='Phone Number' style={styles.numberinput} placeholderTextColor={'rgba(0,0,0,0.5)'} keyboardType='numeric'>
-
-		</TextInput>
-
-		<View style={styles.drop}>
-			<DropDown style={styles.dropp}/>
+		<ScrollView>
+			<View style={styles.Container}>
+			<View style={styles.upper}>
+			<TouchableOpacity>
+			<FontAwesome5 name={'chevron-left'} size={18} color={'darkblue'}
+			onPress={() => {
+				router.back();
+			}}
+			/>
+			</TouchableOpacity>
 			</View>
 
-		<View style={styles.password}>
-		<TextInput placeholder='Password'
-		 style={styles.passinput}
-		  secureTextEntry={secureentry}
-		   placeholderTextColor={'rgba(0,0,0,0.5)'}
-		   autoCorrect={false}>
-		</TextInput>
-		<TouchableOpacity style={styles.eye} onPress={()=>{
-			issecureentry(!secureentry);
-		}}>
-		<FontAwesome5 name={secureentry===false ? 'eye':'eye'} size={25} color={'rgba(0,0,0,0.4)'}/>
-		</TouchableOpacity>
-		</View>
+			<View style={styles.content}>
+			<Text style={styles.signup}>Sign Up</Text>
+			</View>
+			
+			<View style={styles.signupWithOthers}>
+			<TouchableOpacity style={styles.google}>
+			<View style={styles.whiteback}>
+			<Image style={styles.Google} source={require('../../assets/google.png')} />
+			</View>
+			<View style={styles.googletextcontainer}>
+			<Text style={styles.googlesign}>Signup with Google</Text>
+			</View>
+			</TouchableOpacity>
 
-		<View style={styles.confpassword}>
-		<TextInput placeholder='Confirm Password'
-		 style={styles.passinput}
-		  secureTextEntry={confsecureentry}
-		   placeholderTextColor={'rgba(0,0,0,0.5)'}
-		   autoCorrect={false}>
-		</TextInput>
-		<TouchableOpacity style={styles.eye} onPress={()=>{
-			isconfsecureentry(!confsecureentry);
-		}}>
-		<FontAwesome5 name={confsecureentry===false ? 'eye':'eye'} size={25} color={'rgba(0,0,0,0.4)'}/>
-		</TouchableOpacity>
-		</View>
+			<TouchableOpacity style={styles.facebook}>
+			<View style={styles.blueback}>
+			<FontAwesome5 style={styles.fbk} name={'facebook-f'} size={35} color={'rgba(255,255,255,1)'} />
+			</View>
+			<View style={styles.facebooktextcontainer}>
+			<Text style={styles.facebooksign}>Signup with Facebook</Text>
+			</View>
+			</TouchableOpacity>
+			</View>
+
+			<View style={styles.OR}>
+				<Text style={styles.leftline}></Text>
+				<Text style={styles.or}>or</Text>
+				<Text style={styles.rightline}></Text>
+			</View>
+
+		
+		
+
+			<TextInput placeholder='Your Full Name' style={styles.textinput} placeholderTextColor={'rgba(0,0,0,0.5)'} >
+
+			</TextInput>
+
+			<TextInput placeholder='Phone Number' style={styles.numberinput} placeholderTextColor={'rgba(0,0,0,0.5)'} keyboardType='numeric'>
+
+			</TextInput>
+
+
+			<View style={styles.password}>
+			<TextInput placeholder='Password'
+			style={styles.passinput}
+			secureTextEntry={secureentry}
+			placeholderTextColor={'rgba(0,0,0,0.5)'}
+			autoCorrect={false}>
+			</TextInput>
+			<TouchableOpacity style={styles.eye} onPress={()=>{
+				issecureentry(!secureentry);
+			}}>
+			<FontAwesome5 name={secureentry===false ? 'eye':'eye'} size={25} color={'rgba(0,0,0,0.4)'}/>
+			</TouchableOpacity>
+			</View>
+
+			<View style={styles.confpassword}>
+			<TextInput placeholder='Confirm Password'
+			style={styles.passinput}
+			secureTextEntry={confsecureentry}
+			placeholderTextColor={'rgba(0,0,0,0.5)'}
+			autoCorrect={false}>
+			</TextInput>
+			<TouchableOpacity style={styles.eye} onPress={()=>{
+				isconfsecureentry(!confsecureentry);
+			}}>
+			<FontAwesome5 name={confsecureentry===false ? 'eye':'eye'} size={25} color={'rgba(0,0,0,0.4)'}/>
+			</TouchableOpacity>
+			</View>
 		
 		
 			
 
 			<View style={styles.btn}>
 			<TouchableOpacity style={styles.btnn}>
+			<Link href="../SomethingCompletedPages/Signup_Employee_Completed_Page">
 			<Text style={styles.next}>Next</Text>
+			</Link>
 			</TouchableOpacity>
 			</View>
 
@@ -129,6 +128,7 @@ const [confsecureentry,isconfsecureentry]=useState(true);
 			</View>
 
 		</View>
+		</ScrollView>
 		);
 }
 
@@ -270,9 +270,6 @@ const styles=StyleSheet.create({
 		fontSize:16,
 
 	},
-	drop:{
-		marginTop:10,
-	},
 	password:{
 		display:'flex',
 		flexDirection:'row',
@@ -307,7 +304,7 @@ const styles=StyleSheet.create({
 		justifyContent:'center',
 		alignItems:'center',
 		borderRadius:12,
-		marginTop:40,
+		marginTop:windowHeight/6,
 		elevation:15,
 		shadowColor:'rgba(0, 0, 0,0.5)',
 	},

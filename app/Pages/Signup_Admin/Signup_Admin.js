@@ -4,7 +4,11 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {Dimensions} from 'react-native';
 import { useRouter } from "expo-router";
 import {Link} from 'expo-router';
-import SignupEmployee from '../Signup_Employee/Signup_Employee';
+import {
+	responsiveHeight,
+	responsiveWidth,
+	responsiveFontSize
+  } from "react-native-responsive-dimensions";
 
 import {createUserWithEmailAndPassword} from "firebase/auth";
 
@@ -50,7 +54,7 @@ function updateSingupData(name,value){
 		[name]: value
 	}));
 
-}
+};
 
 
 function createUser(){
@@ -70,10 +74,11 @@ function createUser(){
 		// ..
 	  });;
 
-}
+};
 
 
 	return(
+
 		<ScrollView>
 		<View style={styles.Container}>
 		
@@ -110,7 +115,6 @@ function createUser(){
 		<Text style={styles.facebooksign}>Signup with Facebook</Text>
 		</View>
 		</TouchableOpacity>
-
 		</View>
 
 		<View style={styles.OR}>
@@ -124,7 +128,7 @@ function createUser(){
 
 		</TextInput>
 
-		<TextInput  placeholder='Email' value={signupData.email} onChange={(e)=>{updateSingupData("email",e.target.value)}} style={styles.numberinput} placeholderTextColor={'rgba(0,0,0,0.5)'} keyboardType='numeric'>
+		<TextInput  placeholder='Email' value={signupData.email} onChange={(e)=>{updateSingupData("email",e.target.value)}} style={styles.numberinput} placeholderTextColor={'rgba(0,0,0,0.5)'} >
 
 		</TextInput>
 		
@@ -168,7 +172,6 @@ function createUser(){
 			</View>
 
 			<View style={styles.bottom}>
-
 			<Text style={styles.left}>Already have an account?</Text>
 			<Text style={styles.horzline}></Text>
 			<TouchableOpacity>
@@ -176,7 +179,6 @@ function createUser(){
 			<Text style={styles.right}>Sign in</Text>
 			</Link>
 			</TouchableOpacity>
-
 			</View>
 
 		</View>
@@ -188,7 +190,7 @@ const styles=StyleSheet.create({
 	Container:{
 		flex:1,
 		backgroundColor:'white',
-		height:'105%',
+		height:'100%',
 		width:'100%',
 		paddingTop:60,
 		paddingLeft:30,
@@ -196,7 +198,7 @@ const styles=StyleSheet.create({
 	},
 	signupWithOthers:{
 		width:'100%',
-		height:85,
+		height:'11.7%',
 		display:'flex',
 		flexDirection:'column',
 		justifyContent:'space-between',
@@ -304,7 +306,7 @@ const styles=StyleSheet.create({
 	     marginTop:windowHeight/32,
 	},
 	textinput:{
-		height:56,
+		height:'8%',
 		width:'90%',
 		borderRadius:7,
 		borderWidth:1,
@@ -315,7 +317,7 @@ const styles=StyleSheet.create({
 
 	},
 	numberinput:{
-		height:56,
+		height:'8%',
 		width:'90%',
 		borderRadius:7,
 		borderWidth:1,
@@ -373,14 +375,13 @@ const styles=StyleSheet.create({
 		letterSpacing:1.1,
 	},
 	bottom:{
-		display:'flex',
 		flexDirection:'row',
 		justifyContent:'space-between',
 		alignItems:'center',
-		marginTop:windowHeight/8,
+		marginTop:windowHeight/22,
 		paddingLeft:10,
 		paddingRight:20,
-		marginTop:60,
+		height:80,
 
 	},
 	right:{
