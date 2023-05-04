@@ -4,11 +4,7 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {Dimensions} from 'react-native';
 import { useRouter } from "expo-router";
 import {Link} from 'expo-router';
-import {
-	responsiveHeight,
-	responsiveWidth,
-	responsiveFontSize
-  } from "react-native-responsive-dimensions";
+
 
 import {createUserWithEmailAndPassword} from "firebase/auth";
 

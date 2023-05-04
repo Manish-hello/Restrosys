@@ -1,15 +1,43 @@
-import React,{useState} from 'react';
+import React,{useEffect, useState} from 'react';
 import { StyleSheet,Text, View,Image,TextInput,TouchableOpacity,ScrollView} from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {Dimensions} from 'react-native';
 import { useRouter } from "expo-router";
 import {Link} from 'expo-router';
 
+import { FIREBASE_FIRESTORE } from '../../../firebaseConfig';
+import { doc, getDoc } from "firebase/firestore";
+
+
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 export default function SignupEmployeeQr(){
     const router = useRouter();
+	const [inputData,setInputData]= useState("");
+	
+
+	async function gotoNextPage(){
+		let href="./Signup_Employee_yourrestaurant"
+		if(inputData==""){
+			//valid input handelling, mathi aru ne thapne muji;
+			console.log("invalid code");
+		}
+		const docRef = doc(FIREBASE_FIRESTORE, inputData, inputData);
+		const docSnap = await getDoc(docRef);
+
+		if (docSnap.exists()) {
+			const data=docSnap.data()
+			//console.log("Document data:",data);
+			router.push({pathname:href,params:{dbId:inputData,name:data.name,adress:data.adress}});
+		} else {
+		// docSnap.data() will be undefined in this case
+		console.log("No such document!");
+		}
+
+		
+	}
+
     return(
         <ScrollView>
             <View style={styles.container}>
@@ -41,8 +69,9 @@ export default function SignupEmployeeQr(){
 		        </View>
 
                 <View style={styles.textinput}>
-                    <TextInput style={styles.text} placeholder='Enter the resturant ID'
-			        placeholderTextColor={'rgba(0,0,0,0.5)'}
+                    <TextInput style={styles.text} value={inputData} placeholder='Enter the resturant ID'
+			        onChange={(e)=>setInputData(e.target.value)}
+					placeholderTextColor={'rgba(0,0,0,0.5)'}
                     >
                     </TextInput>
                 </View>
@@ -50,9 +79,7 @@ export default function SignupEmployeeQr(){
                 <View style={styles.btn}>
     
                 <TouchableOpacity style={styles.btnn}>
-                <Link style={styles.linkstyle} href="./Signup_Employee_yourrestaurant">
-                <Text style={styles.next}>Next</Text>
-                </Link>
+                <Text style={styles.next} onPress={gotoNextPage}>Next</Text>
                 </TouchableOpacity>
                 
                 </View>

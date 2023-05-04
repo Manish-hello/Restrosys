@@ -4,12 +4,18 @@ import { useRouter, useFocusEffect, usePathname } from "expo-router"
 import { onAuthStateChanged } from "firebase/auth";
 import { FIREBASE_AUTH } from "../firebaseConfig";
 
+export function redirect(router,curret_page,next_page){
+    if(curret_page!=next_page)
+        router.replace(next_page);
+    
+
+}
+
 export function AUTH_HANDELLER_FOR_NON_LOGEDIN_USER(callback){
     const router = useRouter();
     const CURRENT_PAGE=usePathname();
     useEffect(()=>{
        const unsubscribe= onAuthStateChanged(FIREBASE_AUTH,async (user)=>{
-            console.log(user)
             if(user){
                 let reject=false;
                 if(callback)reject=await callback(user);
@@ -26,7 +32,9 @@ export function AUTH_HANDELLER_FOR_NON_LOGEDIN_USER(callback){
                 }else{
                     let paymentDate=token.claims.paymentData;
                     let currentData=Date();
-                    if(!paymentDate || paymentDate<currentData)router.replace("/Pages/Admin/Admin");/*goto waitg for payment to happend page*/
+                    
+                    if(!paymentDate)redirect(router,CURRENT_PAGE,"/Pages/SomethingCompletedPages/Signup_Employee_Completed_Page");
+                    else if(paymentDate<currentData)router.replace("/Pages/Admin/Admin");/*goto waitg for payment to happend page*/
                     else router.replace("/Pages/Admin/Admin"); /*goto client working page */
                     return;
                 }
@@ -82,8 +90,8 @@ export function AUTH_HANDELLER_FOR_LOGEDIN_USER(callback){
                 }else{
                     let paymentDate=token.claims.paymentData;
                     let currentData=Date();
-
-                    if((!paymentDate || paymentDate<currentData) && CURRENT_PAGE!="/Pages/Admin/Admin")
+                    if(!paymentDate)redirect(router,CURRENT_PAGE,"/Pages/SomethingCompletedPages/Signup_Employee_Completed_Page");
+                    else if((!paymentDate || paymentDate<currentData) && CURRENT_PAGE!="/Pages/Admin/Admin")
                         router.replace("/Pages/Admin/Admin");/*goto waitg for payment to happend page*/
                 }
 

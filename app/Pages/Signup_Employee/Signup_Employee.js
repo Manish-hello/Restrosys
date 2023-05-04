@@ -3,8 +3,13 @@ import { StyleSheet,Text, View,Image,TextInput,TouchableOpacity,ScrollView} from
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {Dimensions} from 'react-native';
 import { useRouter } from "expo-router";
-import {Link} from 'expo-router';
+import {Link,useSearchParams} from 'expo-router';
 
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+
+import { FIREBASE_AUTH } from '../../../firebaseConfig';
+
+import {registerClient} from "../../../prototype/FireBaseFunctions"
 import { AUTH_HANDELLER_FOR_NON_LOGEDIN_USER } from '../../../prototype/AuthStateChange';
 
 
@@ -13,11 +18,58 @@ const windowHeight = Dimensions.get('window').height;
 
 
 export default function SignupEmployee(){
-AUTH_HANDELLER_FOR_NON_LOGEDIN_USER();
+	const {dbId}=useSearchParams();
+	AUTH_HANDELLER_FOR_NON_LOGEDIN_USER(async (user)=>{
+		//got next to -> href="../SomethingCompletedPages/Signup_Employee_Completed_Page";
+		console.log("user!")
+		if(user){
+			try{
+				let res=await registerClient({dbId:dbId}); //change to gegister cliet and proved the dbID
+				// let res=await registerClient(dbID); // server ne function code garna xa
+				return false;
+			}catch(error){
+				const code = error.code;
+				const message = error.message;
+				const details = error.details;
+				console.log(error);
+				/*Handle error here chikne muji*/
+				return true;
+			
+			}
+		}
+	});
+
 const router = useRouter();
 const [secureentry,issecureentry]=useState(true);
 const [confsecureentry,isconfsecureentry]=useState(true);
 
+
+
+const [inputData,setInputData]= useState({name:"",email:"",pword:"",repword:""});
+
+function updateInputData(name,value){
+	setInputData(prevState => ({
+		...prevState,
+		[name]: value
+	}));
+}
+async function gotoNextPage(){
+	console.log(inputData);
+	/* please write data validiation code here gandu muji*/
+	createUserWithEmailAndPassword(FIREBASE_AUTH, inputData.email,inputData.pword).then((userCredential) => {
+		// Signed in 
+		const user = userCredential.user;
+		console.log(user);
+		// ...
+	  })
+	  .catch((error) => {
+		/* plz handel error code here bsdk i.e erroe while creating a user with */
+		const errorCode = error.code;
+		const errorMessage = error.message;
+		// ..
+	  });;
+
+}
 
 
 	return(
@@ -66,11 +118,17 @@ const [confsecureentry,isconfsecureentry]=useState(true);
 		
 		
 
-			<TextInput placeholder='Your Full Name' style={styles.textinput} placeholderTextColor={'rgba(0,0,0,0.5)'} >
+			<TextInput placeholder='Your Full Name' style={styles.textinput} 
+			value={inputData.name}
+			onChange={(e)=>updateInputData("name",e.target.value)}
+			placeholderTextColor={'rgba(0,0,0,0.5)'} >
 
 			</TextInput>
 
-			<TextInput placeholder='Phone Number' style={styles.numberinput} placeholderTextColor={'rgba(0,0,0,0.5)'} keyboardType='numeric'>
+			<TextInput placeholder='Phone Number' style={styles.numberinput} 
+			value={inputData.email}
+			onChange={(e)=>updateInputData("email",e.target.value)}
+			placeholderTextColor={'rgba(0,0,0,0.5)'} keyboardType='numeric'>
 
 			</TextInput>
 
@@ -78,6 +136,8 @@ const [confsecureentry,isconfsecureentry]=useState(true);
 			<View style={styles.password}>
 			<TextInput placeholder='Password'
 			style={styles.passinput}
+			value={inputData.pword}
+			onChange={(e)=>updateInputData("pword",e.target.value)}
 			secureTextEntry={secureentry}
 			placeholderTextColor={'rgba(0,0,0,0.5)'}
 			autoCorrect={false}>
@@ -92,6 +152,8 @@ const [confsecureentry,isconfsecureentry]=useState(true);
 			<View style={styles.confpassword}>
 			<TextInput placeholder='Confirm Password'
 			style={styles.passinput}
+			value={inputData.repword}
+			onChange={(e)=>updateInputData("repword",e.target.value)}
 			secureTextEntry={confsecureentry}
 			placeholderTextColor={'rgba(0,0,0,0.5)'}
 			autoCorrect={false}>
@@ -108,9 +170,7 @@ const [confsecureentry,isconfsecureentry]=useState(true);
 
 			<View style={styles.btn}>
 			<TouchableOpacity style={styles.btnn}>
-			<Link href="../SomethingCompletedPages/Signup_Employee_Completed_Page">
-			<Text style={styles.next}>Next</Text>
-			</Link>
+			<Text style={styles.next}  onPress={gotoNextPage}>Next</Text>
 			</TouchableOpacity>
 			</View>
 

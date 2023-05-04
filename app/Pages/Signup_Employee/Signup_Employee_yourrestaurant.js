@@ -4,12 +4,19 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {Dimensions} from 'react-native';
 import { useRouter } from "expo-router";
 import {Link} from 'expo-router';
+import { useSearchParams } from 'expo-router';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 export default function SignupEmployeeYourrestaurant(){
     const router = useRouter();
+    const {dbId,name,adress}=useSearchParams();
+    function gotoNextPage(){
+       const href="./Signup_Employee"
+        router.push({pathname:href,params:{dbId:dbId}})
+    }
+
 
     return(
         <ScrollView>
@@ -30,22 +37,20 @@ export default function SignupEmployeeYourrestaurant(){
 
                 <View style={styles.filledinfo}>
                     <View style={styles.info}>
-                    <Text style={styles.txt}>Restaurant id halne </Text>
+                    <Text style={styles.txt}>{dbId} </Text>
                     </View>
                     <View style={styles.info}>
-                    <Text style={styles.txt}>yeha restaurant ko name halne</Text>
+                    <Text style={styles.txt}>{name}</Text>
                     </View>
                     <View style={styles.info}>
-                    <Text style={styles.txt}>address halne</Text>
+                    <Text style={styles.txt}>{adress}</Text>
                     </View>
                 </View>
 
                 <View style={styles.btn}>
     
                     <TouchableOpacity style={styles.btnn}>
-                    <Link style={styles.linkstyle} href="./Signup_Employee">
-                    <Text style={styles.next}>Next</Text>
-                    </Link>
+                    <Text style={styles.next} onPress={gotoNextPage}>Next</Text>
                     </TouchableOpacity>
                 
                 </View>

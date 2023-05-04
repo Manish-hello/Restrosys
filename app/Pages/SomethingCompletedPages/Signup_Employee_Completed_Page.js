@@ -5,14 +5,22 @@ import {Dimensions} from 'react-native';
 import { useRouter } from "expo-router";
 import {Link} from 'expo-router';
 
+import {signOut} from "firebase/auth";
+import { FIREBASE_AUTH } from '../../../firebaseConfig';
+
+import { AUTH_HANDELLER_FOR_LOGEDIN_USER } from '../../../prototype/AuthStateChange';
+
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 
 
 export default function SignupEmployeeCompleted(){
-
+    AUTH_HANDELLER_FOR_LOGEDIN_USER();
     const router = useRouter();
+    function logout(){
+        signOut(FIREBASE_AUTH);
+    }
 
     return(
         <ScrollView>
@@ -38,9 +46,7 @@ export default function SignupEmployeeCompleted(){
                 <View style={styles.btn}>
     
                     <TouchableOpacity style={styles.btnn}>
-                    <Link href="../Login/Login">
-                    <Text style={styles.started}>Log Out</Text>
-                    </Link>
+                    <Text style={styles.started} onPress={logout}>Log Out</Text>
                     </TouchableOpacity>
                 
                 </View>

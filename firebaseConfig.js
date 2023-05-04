@@ -1,9 +1,9 @@
 import { initializeApp } from 'firebase/app';
 
 // Optionally import the services that you want to use
- import {getAuth,onAuthStateChanged} from "firebase/auth";
+import {getAuth,onAuthStateChanged} from "firebase/auth";
 // import {...} from "firebase/database";
-// import {...} from "firebase/firestore";
+import {getFirestore} from "firebase/firestore";
 import {getFunctions} from "firebase/functions";
 // import {...} from "firebase/storage";
 
@@ -40,13 +40,16 @@ export const FIREBASE_AUTH=getAuth(app);
 const app = initializeApp(firebaseConfig);
 export const FIREBASE_AUTH = getAuth();
 export const FIREBASE_FUNCTION=getFunctions();
+export const FIREBASE_FIRESTORE=getFirestore();
 
 
 import {connectAuthEmulator } from "firebase/auth";
 import { connectFunctionsEmulator } from 'firebase/functions';
+import {connectFirestoreEmulator} from "firebase/firestore"
 if(!inProduction){
   connectAuthEmulator(FIREBASE_AUTH, "http://localhost:9099");
   connectFunctionsEmulator(FIREBASE_FUNCTION,"localhost",5001);
+  connectFirestoreEmulator(FIREBASE_FIRESTORE,"localhost",8080);
 }
 
 
